@@ -1,6 +1,9 @@
 package com.good.word.redis.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.good.word.redis.valid.RepeatedKeyDefinition;
+import com.good.word.redis.valid.UnionKey;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
@@ -12,13 +15,18 @@ import java.util.Date;
  * @since 1.0
  */
 @TableName("user")
-public class UserModel implements Serializable {
+public class UserModel implements Serializable, RepeatedKeyDefinition {
 
     private String id;
+
+    @UnionKey
     @NotEmpty(message = "姓名不能为空")
     private String name;
+    @UnionKey
     @Max(value=100,message="非法年龄")
     private int age;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birth;
 
     public UserModel() {
@@ -71,5 +79,10 @@ public class UserModel implements Serializable {
           ", age=" + age +
           ", birth=" + birth +
           '}';
+    }
+
+    @Override
+    public String uniqKey() {
+        return this.getName() + '*' + this.getAge();
     }
 }

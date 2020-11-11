@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 public class TopicConsumer {
     @RabbitListener(bindings = {
       @QueueBinding(
-        value = @Queue,
-        exchange = @Exchange(value = "Topic交换机", type = "topic"),
+        value = @Queue("Topic队列1"),
+        exchange = @Exchange(value = RabbitConst.EXCHANGE_NAME_TOPIC, type = RabbitConst.EXCHANGE_TYPE_TOPIC),
         key = {"user.*"}
       )
     })
@@ -26,8 +26,8 @@ public class TopicConsumer {
 
     @RabbitListener(bindings = {
       @QueueBinding(
-        value = @Queue,
-        exchange = @Exchange(value = "Topic交换机", type = "topic"),
+        value = @Queue("Topic队列2"),
+        exchange = @Exchange(value = RabbitConst.EXCHANGE_NAME_TOPIC, type = RabbitConst.EXCHANGE_TYPE_TOPIC),
         key = {"role.*"}
       )
     })

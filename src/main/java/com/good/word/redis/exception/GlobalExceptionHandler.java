@@ -12,9 +12,13 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +66,18 @@ public class GlobalExceptionHandler {
     public R exceptionHandler(HttpServletRequest req, NullPointerException e){
         log.error("发生空指针异常！原因是：",e);
         return R.error("服务器内部错误");
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public R exceptionHandler(HttpServletRequest req, ConstraintViolationException e) {
+        log.error("数据校验异常！原因是：", e);
+        Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
+        StringBuilder message = new StringBuilder();
+        for (ConstraintViolation<?> violation : constraintViolations) {
+            message.append(violation.getMessage());
+        }
+        return R.error().code(HttpStatus.BAD_REQUEST.value()).message(message.toString());
     }
 
 

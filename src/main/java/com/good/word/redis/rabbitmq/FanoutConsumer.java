@@ -15,8 +15,8 @@ public class FanoutConsumer {
 
     @RabbitListener(bindings = {
       @QueueBinding(
-        value = @Queue,//临时队列
-        exchange = @Exchange(value = "广播交换机", type = "fanout")
+        value = @Queue(name = "Fanout队列1"),//临时队列
+        exchange = @Exchange(value = RabbitConst.EXCHANGE_NAME_FANOUT, type = RabbitConst.EXCHANGE_TYPE_FANOUT)
       )
     })
     public void receive1(String message) {
@@ -25,8 +25,8 @@ public class FanoutConsumer {
 
     @RabbitListener(bindings = {
       @QueueBinding(
-        value = @Queue,//临时队列
-        exchange = @Exchange(value = "广播交换机", type = "fanout")
+        value = @Queue(name = "Fanout队列2"),//临时队列
+        exchange = @Exchange(value = RabbitConst.EXCHANGE_NAME_FANOUT, type = RabbitConst.EXCHANGE_TYPE_FANOUT)
       )
     })
     public void receive2(String message) {

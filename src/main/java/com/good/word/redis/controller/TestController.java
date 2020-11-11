@@ -1,16 +1,20 @@
 package com.good.word.redis.controller;
 
+import com.good.word.redis.service.ITestService;
 import com.good.word.redis.service.IUserService;
 import com.good.word.redis.utils.RedisUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 @Controller
@@ -18,12 +22,14 @@ public class TestController {
 
     private final RedisUtil redisUtil;
     private final RedisTemplate redisTemplate;
-    private final IUserService iUserService;
+    private final IUserService userService;
+    private final ITestService testService;
 
-    public TestController(RedisUtil redisUtil, RedisTemplate redisTemplate, IUserService iUserService) {
+    public TestController(RedisUtil redisUtil, RedisTemplate redisTemplate, IUserService userService, ITestService testService) {
         this.redisUtil = redisUtil;
         this.redisTemplate = redisTemplate;
-        this.iUserService = iUserService;
+        this.userService = userService;
+        this.testService = testService;
     }
 
 
@@ -96,6 +102,25 @@ public class TestController {
                 }
             }
         }
+    }
+
+    @ResponseBody
+    @GetMapping("/asyncMethodWithNoReturnType")
+    public String asyncMethodNoReturnType() {
+        testService.asyncMethodWithNoReturnType();
+        return "success";
+    }
+
+    @ResponseBody
+    @GetMapping("/asyncMethodWithReturnType")
+    public String asyncMethodWithReturnType() {
+        Future<String> future = testService.asyncMethodWithReturnType();
+        try {
+            return future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        return "fail";
     }
 
 }

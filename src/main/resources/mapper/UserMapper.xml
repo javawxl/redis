@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.good.word.redis.mapper.IUserMapper">
+    <!--默认hashMap缓存类型-->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"
+           eviction="LRU" />
     <update id="updateAgeById">
         update user set age = #{age} where id = #{id}
     </update>
+
+    <select id="list" resultType="com.good.word.redis.entity.ApsprolinePlanSeq">
+        select t.* from apsprolineplanseq t where 1 = 1 and t.plant = 'H' and t.yieldly = 'HP2' and t.prodline = '1A1L1000' and t.otdstatus = 'HQ1200'
+    </select>
+
+    <select id="findByAgeGt" resultType="com.good.word.redis.entity.UserModel" useCache="true">
+        select t.* from user t where t.age >= ${age}
+    </select>
 </mapper>
