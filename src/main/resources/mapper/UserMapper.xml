@@ -15,4 +15,12 @@
     <select id="findByAgeGt" resultType="com.good.word.redis.entity.UserModel" useCache="true">
         select t.* from user t where t.age >= ${age}
     </select>
+
+    <select id="findMapResult" resultType="map" useCache="false">
+        select * from user t
+    </select>
+
+    <select id="mapKey" resultType="map">
+        select t.* from user t
+    </select>
 </mapper>

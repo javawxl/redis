@@ -1,10 +1,15 @@
 package com.good.word.redis.rabbitmq;
 
+import com.rabbitmq.client.Channel;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author wangxianlei
@@ -19,8 +24,13 @@ public class TopicConsumer {
         key = {"user.*"}
       )
     })
-    public void receive(String message) {
-        System.out.println("User Consumer :" + message);
+    public void receive(Message message, Channel channel) throws IOException {
+        try {
+            System.out.println("Topic队列消费者(User):" + new String( message.getBody(), StandardCharsets.UTF_8));
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        } catch (Exception e) {
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
+        }
     }
 
 
@@ -31,7 +41,12 @@ public class TopicConsumer {
         key = {"role.*"}
       )
     })
-    public void receive2(String message) {
-        System.out.println("Role Consumer :" + message);
+    public void receive2(Message message, Channel channel) throws IOException {
+        try {
+            System.out.println("Topic队列消费者(Role):" + new String( message.getBody(), StandardCharsets.UTF_8));
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+        } catch (Exception e) {
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
+        }
     }
 }

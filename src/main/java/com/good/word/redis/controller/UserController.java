@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangxianlei
@@ -52,6 +53,19 @@ public class UserController {
         //一级缓存生效都演示代码:
         List<UserModel> list = userService.findByCache1(30);
         return R.ok().data(list);
+    }
+
+    @GetMapping("/map")
+    public R mapResult() {
+        UserModel userModel = new UserModel();
+        Map<String, String> mapResult = userService.findMapResult(userModel, 12);
+        return R.ok().data(mapResult);
+    }
+
+    @GetMapping("/mapKey")
+    public R listMapResult() {
+        Map<String, UserModel> mapList = userService.mapKey();
+        return R.ok().data(mapList);
     }
 
 

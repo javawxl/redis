@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.good.word.redis.entity.UserModel;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangxianlei
@@ -14,4 +15,6 @@ public interface IUserService extends IService<UserModel> {
     List<UserModel> findByAgeGt(int age);
     List<UserModel> findByCache1(int age);
     List<UserModel> findByCache2(int age);
+    Map<String, String> findMapResult(UserModel userModel, int age);
+    Map<String, UserModel> mapKey();
 }

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -59,6 +60,16 @@ public class UserServiceImpl extends ServiceImpl<IUserMapper, UserModel> impleme
 //        list.addAll(list1);
         userMapper.findByAgeGt(30);
         return list;
+    }
+
+    @Override
+    public Map<String, String> findMapResult(UserModel userModel, int age) {
+        return userMapper.findMapResult(userModel, age);
+    }
+
+    @Override
+    public Map<String, UserModel> mapKey() {
+        return userMapper.mapKey();
     }
 
 }

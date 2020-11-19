@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.good.word.redis.mapper.IProductMapper">
+    <resultMap id="BaseResultMap" type="com.good.word.redis.entity.ProductModel">
+        <id column="product_id" property="productId" />
+        <result column="product_name" property="productName" />
+        <result column="store_quantity" property="storeQuantity" />
+        <result column="sell_quantity" property="sellQuantity" />
+    </resultMap>
+
+    <select id="selectByIdWithPessimisticLock" resultType="com.good.word.redis.entity.ProductModel">
+        select * from product t where t.product_id = #{productId} for update
+    </select>
+
+    <update id="updateByIdWithOptimisticLock">
+        update product set store_quantity = store_quantity - 1, sell_quantity = sell_quantity + 1
+        where product_id = #{productId} and store_quantity = #{storeQuantity} and sell_quantity = #{sellQuantity}
+    </update>
+</mapper>
