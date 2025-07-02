@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft WebStudio version 3.0.0 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" pageWidth="595" pageHeight="842" name="Blank_A4" uuid="d1fa7a7c-abd6-4cfb-bba5-468925c847b1">
+  <field name="name" class="java.lang.String">
+    <fieldDescription><![CDATA[制单人]]></fieldDescription>
+  </field>
   <title>
     <band height="200">
       <staticText>
