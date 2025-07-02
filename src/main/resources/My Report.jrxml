@@ -4,7 +4,26 @@
   <propertyExpression name="net.sf.jasperreports.data.adapter"><![CDATA[$F{name}]]></propertyExpression>
   <field name="name" class="java.lang.String"/>
   <title>
-    <band height="200"/>
+    <band height="200">
+      <areaChart>
+        <chart>
+          <reportElement x="147" y="16" width="200" height="200" uuid="52d6007b-6d07-46a3-8d26-700e6b47dfe4"/>
+          <chartTitle/>
+          <chartSubtitle/>
+          <chartLegend/>
+        </chart>
+        <categoryDataset/>
+        <areaPlot>
+          <plot/>
+          <categoryAxisFormat>
+            <axisFormat/>
+          </categoryAxisFormat>
+          <valueAxisFormat>
+            <axisFormat/>
+          </valueAxisFormat>
+        </areaPlot>
+      </areaChart>
+    </band>
   </title>
   <pageHeader>
     <band height="100"/>
@@ -12,12 +31,12 @@
   <detail>
     <band height="442">
       <staticText>
-        <reportElement x="70" y="49" width="46" height="20" uuid="82a44ef5-ad4d-43e7-b0de-94684982b8c8"/>
+        <reportElement x="79" y="38" width="46" height="20" uuid="82a44ef5-ad4d-43e7-b0de-94684982b8c8"/>
         <textElement verticalAlignment="Middle"/>
         <text><![CDATA[制单人：]]></text>
       </staticText>
       <textField>
-        <reportElement x="218" y="49" width="200" height="30" uuid="f1c240f9-1cc0-4c18-800d-dbdcf76cc8b4"/>
+        <reportElement x="228" y="33" width="200" height="30" uuid="f1c240f9-1cc0-4c18-800d-dbdcf76cc8b4"/>
         <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
       </textField>
     </band>
