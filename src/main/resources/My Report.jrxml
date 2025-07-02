@@ -4,10 +4,14 @@
   <title>
     <band height="200">
       <staticText>
-        <reportElement x="14" y="21" width="46" height="20" uuid="82a44ef5-ad4d-43e7-b0de-94684982b8c8"/>
+        <reportElement x="56" y="49" width="46" height="20" uuid="82a44ef5-ad4d-43e7-b0de-94684982b8c8"/>
         <textElement verticalAlignment="Middle"/>
         <text><![CDATA[制单人：]]></text>
       </staticText>
+      <textField>
+        <reportElement x="147" y="45" width="200" height="30" uuid="f1c240f9-1cc0-4c18-800d-dbdcf76cc8b4"/>
+        <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+      </textField>
     </band>
   </title>
   <pageHeader>
