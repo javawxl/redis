@@ -3,23 +3,23 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" pageWidth="595" pageHeight="842" name="Blank_A4" uuid="d1fa7a7c-abd6-4cfb-bba5-468925c847b1">
   <field name="name" class="java.lang.String"/>
   <title>
-    <band height="200">
-      <staticText>
-        <reportElement x="56" y="49" width="46" height="20" uuid="82a44ef5-ad4d-43e7-b0de-94684982b8c8"/>
-        <textElement verticalAlignment="Middle"/>
-        <text><![CDATA[制单人：]]></text>
-      </staticText>
-      <textField>
-        <reportElement x="147" y="45" width="200" height="30" uuid="f1c240f9-1cc0-4c18-800d-dbdcf76cc8b4"/>
-        <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
-      </textField>
-    </band>
+    <band height="200"/>
   </title>
   <pageHeader>
     <band height="100"/>
   </pageHeader>
   <detail>
-    <band height="442"/>
+    <band height="442">
+      <staticText>
+        <reportElement x="70" y="49" width="46" height="20" uuid="82a44ef5-ad4d-43e7-b0de-94684982b8c8"/>
+        <textElement verticalAlignment="Middle"/>
+        <text><![CDATA[制单人：]]></text>
+      </staticText>
+      <textField>
+        <reportElement x="218" y="49" width="200" height="30" uuid="f1c240f9-1cc0-4c18-800d-dbdcf76cc8b4"/>
+        <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+      </textField>
+    </band>
   </detail>
   <pageFooter>
     <band height="100"/>
