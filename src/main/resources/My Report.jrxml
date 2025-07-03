@@ -10,35 +10,7 @@
     <band height="100"/>
   </pageHeader>
   <detail>
-    <band height="442">
-      <staticText>
-        <reportElement x="79" y="38" width="46" height="20" uuid="82a44ef5-ad4d-43e7-b0de-94684982b8c8"/>
-        <textElement verticalAlignment="Middle"/>
-        <text><![CDATA[制单人：]]></text>
-      </staticText>
-      <textField>
-        <reportElement x="228" y="33" width="200" height="30" uuid="f1c240f9-1cc0-4c18-800d-dbdcf76cc8b4"/>
-        <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
-      </textField>
-      <areaChart>
-        <chart>
-          <reportElement x="165" y="125" width="200" height="200" uuid="52d6007b-6d07-46a3-8d26-700e6b47dfe4"/>
-          <chartTitle/>
-          <chartSubtitle/>
-          <chartLegend/>
-        </chart>
-        <categoryDataset/>
-        <areaPlot>
-          <plot/>
-          <categoryAxisFormat>
-            <axisFormat/>
-          </categoryAxisFormat>
-          <valueAxisFormat>
-            <axisFormat/>
-          </valueAxisFormat>
-        </areaPlot>
-      </areaChart>
-    </band>
+    <band height="442"/>
   </detail>
   <pageFooter>
     <band height="100"/>
